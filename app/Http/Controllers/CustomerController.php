@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -45,15 +46,16 @@ class CustomerController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        //
+        return view('customer.edit', compact('customer'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->update($request->validated());
+        return redirect()->route('customer.show', $customer->id)->with('success', 'Customer information updated.');
     }
 
     public function destroy($id)

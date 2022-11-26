@@ -21,10 +21,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('medical-session-customer/{customer}', [\App\Http\Controllers\MedicalSessionController::class, 'createFromCustomer'])->name('medical-session-customer.create');
+Route::post('medical-session-customer/{customer}', [\App\Http\Controllers\MedicalSessionController::class, 'storeFromCustomer'])->name('medical-session-customer.store');
 Route::resource('customer', \App\Http\Controllers\CustomerController::class)->names([
     'index' => 'customer'
 ]);
-Route::resource('medical-session', \App\Http\Controllers\MedicalSessionController::class);
+Route::resource('medical-session', \App\Http\Controllers\MedicalSessionController::class)->except([
+    'store',
+    'create'
+]);
 
 
 require __DIR__.'/auth.php';

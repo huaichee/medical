@@ -2,7 +2,7 @@
         <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
             <div class="flex justify-between items-center pb-4">
                 <div>
-                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-right float-right" href="{{ route('medical-session.create') }}">New Session</a>
+                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-right float-right" href="{{ route('medical-session-customer.create', $customer->id) }}">New Session</a>
                 </div>
 
             </div>
@@ -22,7 +22,7 @@
                             Number of Issue
                         </th>
 
-                        <th scope="col" class="py-3 px-6">
+                        <th scope="col" class="py-3 px-6 text-center">
                             Delete
                         </th>
 
@@ -46,8 +46,14 @@
                             {{ $medicalSession->medicationSessionDetails ? $medicalSession->medicationSessionDetails->count() : 0 }}
                         </td>
 
-                        <td class="py-4 px-6">
-                            <span class="fa fa-times"></span>
+                        <td class="py-4 px-6 text-center">
+                            <form action="{{ route('medical-session.destroy', $medicalSession->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <x-button class=" text-red-700 font-bold">
+                                    {{ __('x') }}
+                                </x-button>
+                            </form>
                         </td>
 
                     </tr>

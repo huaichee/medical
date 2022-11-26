@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MedicalSessionDetail extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = ['medical_session_id', 'body_position', 'note'];
 

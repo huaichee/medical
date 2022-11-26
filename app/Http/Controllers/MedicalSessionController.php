@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewMedicalSessionRequest;
+use App\Models\Customer;
+use App\Models\MedicalSession;
 use Illuminate\Http\Request;
 
 class MedicalSessionController extends Controller
@@ -16,25 +19,18 @@ class MedicalSessionController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function createFromCustomer(Customer $customer)
     {
-        //
+        return view('customer.medical.create', compact('customer'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function storeFromCustomer(NewMedicalSessionRequest $request, Customer $customer)
     {
-        //
+        $medicationSession = $customer->medicalSessions()->create($request->validated());
+
+        return redirect()->route('medication-session.show', $medicationSession->id)->with('success', 'Medication Session Added.');
     }
 
     /**
@@ -77,8 +73,9 @@ class MedicalSessionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MedicalSession $medicalSession)
     {
-        //
+        $medicalSession->delete();
+        return back()->with('success', 'Medical session was deleted.');
     }
 }
