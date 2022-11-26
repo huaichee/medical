@@ -33,14 +33,14 @@ class CustomerController extends Controller
 
     public function store(NewCustomerRequest $request)
     {
-        Customer::create($request->validated());
-        return back();
+        $customer = Customer::create($request->validated());
+        return redirect()->route('customer.show', $customer->id);
     }
 
 
     public function show(Customer $customer)
     {
-        $customer->load('medicalSessions');
+        $customer->load('medicalSessions.medicalSessionDetails.bodyPosition');
         return view('customer.show', compact('customer'));
     }
 

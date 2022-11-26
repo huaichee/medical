@@ -11,7 +11,7 @@ class MedicalSession extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id', 'medication_date'];
+    protected $fillable = ['customer_id', 'medication_date', 'remark'];
 
     public function customer() : BelongsTo
     {

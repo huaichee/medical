@@ -25,10 +25,14 @@
                             <div class="col">{{ $customer->medicalSessions->isNotEmpty() ? $customer->medicalSessions->sortByDesc('medication_date')->first()->medication_date : '- Not Available -' }}</div>
                         </div>
 
-                        <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        <div class="block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 ">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Remark</h5>
                             <p class="font-normal text-gray-700 dark:text-gray-400">{{ $customer->remark ?? ' - No Remark -' }}</p>
                         </div>
+
+
+                        <h2 class="text-4xl font-bold dark:text-white">Session</h2>
+                        @include('customer.medical.index', ['medicalSessions' => $customer->medicalSessions->sortByDesc('medication_date')])
                     </div>
                 </div>
             </div>
