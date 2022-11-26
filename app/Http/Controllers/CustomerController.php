@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewCustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -25,15 +26,17 @@ class CustomerController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(NewCustomerRequest $request)
     {
-        //
+        Customer::create($request->validated());
+        return back();
     }
 
 
-    public function show($id)
+    public function show(Customer $customer)
     {
-        //
+        $customer->load('medicalSessions');
+        return view('customer.show', compact('customer'));
     }
 
 
