@@ -26,19 +26,19 @@
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="age">
                                         Age
                                     </label>
-                                    <input required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="age" type="number" placeholder="Age" name="age">
+                                    <input  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="age" type="number" placeholder="Age" name="age">
                                 </div>
 
                                 <div class="mb-6">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
                                         Phone
                                     </label>
-                                    <input required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="text" placeholder="Phone" name="phone">
+                                    <input  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="text" placeholder="Phone" name="phone">
                                 </div>
 
                                 <div class="mb-6">
                                     <label for="gender" class="block text-gray-700 text-sm font-bold mb-2">Select gender</label>
-                                    <select id="gender" name="gender" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <select id="gender" name="gender"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option selected value disabled>Choose a GENDER</option>
                                         <option value="1">MALE</option>
                                         <option value="2">FEMALE</option>

@@ -12,9 +12,14 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $customers = Customer::query()
+            ->when(!empty(request('search')), function($query){
+                $query->where('name', 'LIKE', '%' . request('search') . '%');
+            })
             ->withCount('medicalSessions')
             ->lastVisit()
-            ->paginate(20);
+            ->orderBy('name')
+            ->paginate(2)
+            ->withQueryString();
 
         return view('customer.index', compact('customers'));
     }
