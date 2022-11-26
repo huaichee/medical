@@ -22,6 +22,10 @@
                             Number of Issue
                         </th>
 
+                        <th scope="col" class="py-3 px-6">
+                            View
+                        </th>
+
                         <th scope="col" class="py-3 px-6 text-center">
                             Delete
                         </th>
@@ -44,6 +48,10 @@
 
                         <td class="py-4 px-6">
                             {{ $medicalSession->medicationSessionDetails ? $medicalSession->medicationSessionDetails->count() : 0 }}
+                        </td>
+
+                        <td class="py-4 px-6">
+                            <a href="{{ route('medical-session.show', $medicalSession->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
                         </td>
 
                         <td class="py-4 px-6 text-center">

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\NewMedicalSessionRequest;
+use App\Http\Requests\NewMedicalSessionDetailRequest;
+use App\Http\Requests\MedicalSessionRequest;
+use App\Models\BodyPosition;
 use App\Models\Customer;
 use App\Models\MedicalSession;
 use Illuminate\Http\Request;
@@ -20,59 +22,52 @@ class MedicalSessionController extends Controller
     }
 
 
+    public function createMedicalDetail(MedicalSession $medicalSession)
+    {
+        $bodyPositions = BodyPosition::query()->get();
+        return view('medical-session.detail.create', compact('medicalSession', 'bodyPositions'));
+    }
+
+    public function storeMedicalDetail(NewMedicalSessionDetailRequest $request, MedicalSession $medicalSession)
+    {
+        $medicalSession->medicalSessionDetails()->create($request->validated());
+        return redirect()->route('medical-session.show', $medicalSession->id)->with('success', 'Medication Session Added.');
+    }
+
+
+
     public function createFromCustomer(Customer $customer)
     {
         return view('customer.medical.create', compact('customer'));
     }
 
 
-    public function storeFromCustomer(NewMedicalSessionRequest $request, Customer $customer)
+    public function storeFromCustomer(MedicalSessionRequest $request, Customer $customer)
     {
-        $medicationSession = $customer->medicalSessions()->create($request->validated());
+        $medicalSession = $customer->medicalSessions()->create($request->validated());
 
-        return redirect()->route('medication-session.show', $medicationSession->id)->with('success', 'Medication Session Added.');
+        return redirect()->route('medical-session.show', $medicalSession->id)->with('success', 'Medication Session Added.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(MedicalSession $medicalSession)
     {
-        //
+        $medicalSession->load('customer', 'medicalSessionDetails.bodyPosition');
+        return view('medical-session.show', compact('medicalSession'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(MedicalSession $medicalSession)
     {
-        //
+        return view('medical-session.edit', compact('medicalSession'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(MedicalSessionRequest $request, MedicalSession $medicalSession)
     {
-        //
+        $medicalSession->update($request->validated());
+        return redirect()->route('medical-session.show', $medicalSession->id)->with('success', 'Medical session information updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(MedicalSession $medicalSession)
     {
         $medicalSession->delete();

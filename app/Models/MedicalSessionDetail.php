@@ -13,7 +13,7 @@ class MedicalSessionDetail extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['medical_session_id', 'body_position', 'note'];
+    protected $fillable = ['medical_session_id', 'body_position_id', 'note'];
 
     public function medicalSession() : BelongsTo
     {

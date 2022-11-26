@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewMedicalSessionRequest extends FormRequest
+class NewMedicalSessionDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,15 @@ class NewMedicalSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'medication_date' => 'required|date',
-            'remark' => 'nullable'
+            'body_position_id' => 'required',
+            'note' => 'required|max:1000'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'body_position_id.required' => 'Body position is required',
         ];
     }
 }
