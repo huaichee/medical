@@ -18,9 +18,11 @@ class CreateCustomersTable extends Migration
             $table->string('phone');
             $table->string('name');
             $table->integer('age');
-            $table->text('address');
-            $table->text('remark');
+            $table->integer('gender')->default(0);
+            $table->text('address')->nullable();
+            $table->text('remark')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

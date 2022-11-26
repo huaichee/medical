@@ -21,8 +21,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('customer', \App\Http\Controllers\CustomerController::class);
-Route::resource('medical-session', \App\Http\Controllers\Medi::class);
+Route::resource('customer', \App\Http\Controllers\CustomerController::class)->names([
+    'index' => 'customer'
+]);
+Route::resource('medical-session', \App\Http\Controllers\MedicalSessionController::class);
 
 
 require __DIR__.'/auth.php';
