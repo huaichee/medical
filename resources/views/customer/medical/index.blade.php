@@ -47,7 +47,7 @@
                         </td>
 
                         <td class="py-4 px-6">
-                            {{ $medicalSession->medicationSessionDetails ? $medicalSession->medicationSessionDetails->count() : 0 }}
+                            {{ $medicalSession->medicalSessionDetails ? $medicalSession->medicalSessionDetails->count() : 0 }}
                         </td>
 
                         <td class="py-4 px-6">
