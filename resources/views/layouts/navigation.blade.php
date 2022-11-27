@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('customer')" :active="request()->routeIs('customer')">
                         {{ __('Customer') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('body-position')" :active="request()->routeIs('body-position')">
+                        {{ __('Body Position Setting') }}
+                    </x-nav-link>
 
                 </div>
             </div>

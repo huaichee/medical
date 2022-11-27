@@ -19,7 +19,7 @@ class CustomerController extends Controller
             ->withCount('medicalSessions')
             ->lastVisit()
             ->orderBy('name')
-            ->paginate(2)
+            ->paginate(10)
             ->withQueryString();
 
         return view('customer.index', compact('customers'));

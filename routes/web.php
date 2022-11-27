@@ -36,5 +36,8 @@ Route::resource('medical-session', \App\Http\Controllers\MedicalSessionControlle
 
 Route::delete('medical-session-detail/{medicalSessionDetail}', [\App\Http\Controllers\MedicalSessionDetailController::class, 'destroy'])->name('medical-session-detail.destroy');
 
+Route::resource('body-position', \App\Http\Controllers\BodyPositionController::class)->names([
+    'index' => 'body-position'
+]);
 
 require __DIR__.'/auth.php';
